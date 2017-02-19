@@ -39,7 +39,7 @@ export default observer(class App extends Component {
                     <img src={logo} className="App-logo" alt="logo"/>
                 </div>
                 <div className="App-intro">
-                    <h3>Sample Application using <a href="">Jumpstate</a> to simplify working with <a
+                    <h3>Sample Application using <a href="https://github.com/mobxjs/mobx">MobX</a> to simplify working with <a
                         href="https://github.com/reactjs/redux">Redux</a> for state
                         management in your <a href="https://facebook.github.io/react/">React</a> application</h3>
                     <ul>
@@ -49,6 +49,7 @@ export default observer(class App extends Component {
                         <li>How to use <a href="">Firebase</a> to make async query and to show how to add items</li>
                         <li>Simple integration of <a
                             href="https://github.com/ReactTraining/react-router">react-router</a></li>
+                        <li>multiple stores utilized in example, one for Users & one for Firebase Objects</li>
                     </ul>
                 </div>
 
