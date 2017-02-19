@@ -3,5 +3,6 @@
 - How to use [randomuser.me](https://randomuser.me/) to make an async request to load data
 - How to use [Firebase](http://www.firebase.com/) to make async query and to show how to add items
 - Simple integration of [react-router](https://github.com/ReactTraining/react-router)
+- multiple stores utilized in example
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
