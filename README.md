@@ -4,5 +4,6 @@
 - How to use [Firebase](http://www.firebase.com/) to make async query and to show how to add items
 - Simple integration of [react-router](https://github.com/ReactTraining/react-router)
 - multiple stores utilized in example
+- incorporated [mobx-react-devtools](https://github.com/mobxjs/mobx-react-devtools)
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
