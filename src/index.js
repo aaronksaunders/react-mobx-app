@@ -6,13 +6,11 @@ import App from './App';
 import QueryUsers from './components/QueryUsers'
 import QueryStuff from './components/QueryStuff'
 import './index.css';
+import {stores} from './state/stores'
 
 import * as firebase from 'firebase';
 
 import {Provider} from 'mobx-react'
-import StuffStore from './state/stuff'
-import UserStore from './state/users'
-
 
 
 const firebaseConfig = {
@@ -26,9 +24,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 
-const stuffStore = new StuffStore();
-const userStore = new UserStore();
-const stores = { stuffStore, userStore };
+
 ReactDOM.render(
     <Provider {...stores} >
         <Router history={browserHistory}>
