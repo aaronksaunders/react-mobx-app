@@ -10,7 +10,7 @@ export default class StuffStore {
     constructor() {
         extendObservable(this, {
             isLoading: false,
-            stuffList: observable.shallow([]),
+            stuffList: [],
             newStuff : null,
             error: null
         })
@@ -55,13 +55,12 @@ export default class StuffStore {
         const newPostKey = firebase.database().ref().child('stuff').push().key;
 
         const updates = {};
-        updates['/stuff/' + newPostKey] = {
-            'location': 'location ' + Date.now(),
-            'name': 'Any Name'
-        };
+        updates['/stuff/' + newPostKey] = {..._options, when : Date.now() };
 
         firebase.database().ref().update(updates).then((_response) => {
             this.newStuff = {...updates['/stuff/' + newPostKey], id: newPostKey};
+            return this.stuffList.push(this.newStuff)
+        }).then(() =>{
             this.isLoading = false;
         }).catch((_error) => {
             this.error = _error.message

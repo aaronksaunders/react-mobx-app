@@ -10,14 +10,15 @@ import {observer, inject} from "mobx-react";
 export default inject("stuffStore")(observer(function ListStuffComponent(props) {
 
     const {stuffList, isLoading} = props.stuffStore;
-    const styles = {'display': 'flex', flexDirection: 'column'}
-    const listItems = isLoading ? <p>LOADING...</p>
-        : stuffList.map((_stuff) =>
+    const styles = {'display': 'flex', flexDirection: 'column', padding: 10}
+    const listItems = stuffList.map((_stuff) =>
             <ListItem key={_stuff.id} stuff={_stuff}/>
         );
+    const isLoadingText =  isLoading ? <div>LOADING...</div> : ""
 
     return (
         <div style={styles}>
+            {isLoadingText}
             {listItems}
         </div>
     );
@@ -32,16 +33,16 @@ export default inject("stuffStore")(observer(function ListStuffComponent(props) 
 function ListItem(props) {
     const {stuff} = props;
     const styles = {
-        container: {'display': 'flex', flexDirection: 'row', padding: 3},
-        image: {flex: 0, padding: 5},
-        email: {flex: 1, padding: 5}
+        container: {'display': 'flex', flexDirection: 'row', padding: 10},
+        name: {flex: 1, padding: 2},
+        location: {flex: 1, padding: 2}
     }
 
 
     return (
         <div style={styles.container}>
-            <p style={styles.email}>{stuff.name}</p>
-            <p style={styles.email}>{stuff.location}</p>
+            <p style={styles.name}>{stuff.name}</p>
+            <p style={styles.location}>{stuff.location}</p>
         </div>
     );
 }
