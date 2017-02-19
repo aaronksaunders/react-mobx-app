@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react'
-import ListStuffComponent from './ListStuffComponent'
+import ListStuffComponent from '../components/ListStuffComponent'
 import { browserHistory } from 'react-router'
 import {observer, inject} from "mobx-react";
 

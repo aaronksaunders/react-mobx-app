@@ -8,8 +8,7 @@ import {observer, inject} from "mobx-react";
  * @constructor
  */
 export default inject("stuffStore")(observer(function ListStuffComponent(props) {
-    debugger;
-    console.log(props)
+
     const {stuffList, isLoading} = props.stuffStore;
     const styles = {'display': 'flex', flexDirection: 'column'}
     const listItems = isLoading ? <p>LOADING...</p>

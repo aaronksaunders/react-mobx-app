@@ -3,7 +3,7 @@ import {extendObservable, computed, observable} from 'mobx';
 import * as firebase from 'firebase';
 
 /**
- *
+ * this is the store that is used to access and update the firebase data
  */
 export default class StuffStore {
 
@@ -16,6 +16,9 @@ export default class StuffStore {
         })
     }
 
+    /**
+     * load the objects from the stuff path in the firebase store
+     */
     loadStuff() {
         this.isLoading = true;
 
@@ -41,6 +44,11 @@ export default class StuffStore {
 
     }
 
+    /**
+     * add on object to the firebase store
+     *
+     * @param _options
+     */
     addStuff(_options) {
         this.isLoading = true;
 

@@ -13,6 +13,8 @@ import './App.css';
  */
 export default observer(class App extends Component {
 
+
+
     constructor(props) {
         super(props)
     }
@@ -31,7 +33,6 @@ export default observer(class App extends Component {
 
 
     render() {
-        const {users} = this.props;
 
         return (
             <div className="App-intro">

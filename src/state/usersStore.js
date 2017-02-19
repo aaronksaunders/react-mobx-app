@@ -4,7 +4,7 @@ import axios from 'axios';
 /**
  *
  */
-export default class UserStore {
+export default class UsersStore {
 
     constructor() {
         extendObservable(this, {
@@ -20,7 +20,6 @@ export default class UserStore {
         axios.get('https://randomuser.me/api/?results=50')
             .then((_result) => {
                 this.userList = _result.data.results
-                console.log(this.userList )
             })
             .catch((_error) => this.error = _error.message)
             .finally(() => this.isLoading = false)

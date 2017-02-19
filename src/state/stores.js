@@ -1,6 +1,6 @@
-import StuffStore from './stuff'
-import UserStore from './users'
+import StuffStore from './stuffStore'
+import UsersStore from './usersStore'
 
 const stuffStore = new StuffStore();
-const userStore = new UserStore();
-export  const stores = { stuffStore, userStore };
+const usersStore = new UsersStore();
+export const stores = { stuffStore, usersStore };
