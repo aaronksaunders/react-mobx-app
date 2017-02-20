@@ -25,14 +25,27 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 
+function checkAuth(nextState, replaceState) {
+
+    let {stuffStore} = stores;
+    if (nextState.location.pathname === '/') return;
+    if (stuffStore.user === null) {
+        replaceState('/');
+    }
+
+}
+
+
 ReactDOM.render(
     // stores loaded up from state/stores.js
     <Provider {...stores} >
         <Router history={browserHistory}>
             <Route path="/" component={Root}>
                 <IndexRoute component={App}/>
-                <Route path="/query-users" component={QueryUsers}/>
-                <Route path="/query-stuff" component={QueryStuff}/>
+                <Route onEnter={checkAuth}>
+                    <Route path="/query-users" component={QueryUsers}/>
+                    <Route path="/query-stuff" component={QueryStuff}/>
+                </Route>
             </Route>
         </Router>
     </Provider>, document.getElementById('root')

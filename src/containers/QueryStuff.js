@@ -13,6 +13,8 @@ function QueryStuff({stuffStore}) {
     };
 
 
+
+
     return (
         <div style={{padding: 20}}>
             <div style={{padding: 10}}>

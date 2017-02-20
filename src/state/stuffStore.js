@@ -12,7 +12,35 @@ export default class StuffStore {
             isLoading: false,
             stuffList: [],
             newStuff : null,
-            error: null
+            error: null,
+            user : null,
+
+        })
+    }
+
+    doLogin({email,password}) {
+        // 'newuser@mail.com', 'password'
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then((_user) =>{
+                this.error = null;
+                this.user = _user;
+            }, (_error)=>{
+                this.error = _error;
+                this.user = null;
+            })
+    }
+
+    doCreateAccount() {
+
+    }
+
+    doCheckAuth() {
+
+    }
+
+    doLogout() {
+        firebase.auth().signOut().then(()=>{
+            this.user = null
         })
     }
 

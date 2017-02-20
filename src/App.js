@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router'
-import {observer} from "mobx-react";
-
+import {observer,inject} from "mobx-react";
+import  LoginContainer  from "./containers/LoginContainer"
 import * as firebase from 'firebase';
 
 import logo from './logo.svg';
@@ -13,18 +13,50 @@ import './App.css';
  */
 class App extends Component {
 
+    constructor(props) {
+        super(props)
+        this.state = {
+            auth : false
+        }
+    }
+
     componentDidMount() { // check to see if already signed in.
         const auth = firebase.auth();
         auth.onAuthStateChanged((user) => {
+            console.log("state changed")
             if (user) {
                 this.setState({auth: user});
             } else {
                 this.setState({auth: false});
-                firebase.auth().signInWithEmailAndPassword('newuser@mail.com', 'password');
             }
         });
     }
 
+    logout() {
+        this.props.stuffStore.doLogout()
+    }
+
+    renderActionButtons() {
+        return (
+            <div>
+                <div>
+                    <button className="App-button" onClick={ () => browserHistory.push('/query-users') }>Load Users -
+                        RandomUser.me Example
+                    </button>
+                </div>
+                <div>
+                    <button className="App-button" onClick={ () => browserHistory.push('/query-stuff') }>
+                        Load Stuff - Firebase Query Example
+                    </button>
+                </div>
+                <div>
+                    <button className="App-button" onClick={ () => this.logout() }>
+                        Logout - Firebase Query Example
+                    </button>
+                </div>
+            </div>
+        )
+    }
 
     render() {
 
@@ -34,8 +66,9 @@ class App extends Component {
                     <img src={logo} className="App-logo" alt="logo"/>
                 </div>
                 <div className="App-intro">
-                    <h3>Sample Application using <a href="https://github.com/mobxjs/mobx">MobX</a> to simplify working with <a
-                        href="https://github.com/reactjs/redux">Redux</a> for state
+                    <h3>Sample Application using <a href="https://github.com/mobxjs/mobx">MobX</a> to simplify working
+                        with <a
+                            href="https://github.com/reactjs/redux">Redux</a> for state
                         management in your <a href="https://facebook.github.io/react/">React</a> application</h3>
                     <ul>
                         <li>How to use <a href="https://randomuser.me/">randomuser.me</a> to make an async request to
@@ -47,23 +80,11 @@ class App extends Component {
                         <li>multiple stores utilized in example, one for Users & one for Firebase Objects</li>
                     </ul>
                 </div>
-
-                <div>
-                    <button className="App-button" onClick={ () => browserHistory.push('/query-users') }>Load Users -
-                        RandomUser.me Example
-                    </button>
-                </div>
-                <div>
-                    <button className="App-button" onClick={ () => browserHistory.push('/query-stuff') }>Load Stuff -
-                        Firebase Query Example
-                    </button>
-                </div>
-                <div>
-                </div>
+                { this.state.auth === false ? (<LoginContainer props={this.props} />) : this.renderActionButtons() }
             </div>
         );
     }
 }
 
 
-export default observer(App)
+export default inject("stuffStore")(observer(App))
