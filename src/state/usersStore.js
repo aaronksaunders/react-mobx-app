@@ -1,4 +1,4 @@
-import {extendObservable, computed, observable} from 'mobx';
+import {extendObservable, observable} from 'mobx';
 import axios from 'axios';
 
 /**

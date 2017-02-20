@@ -11,13 +11,7 @@ import './App.css';
 /**
  *
  */
-export default observer(class App extends Component {
-
-
-
-    constructor(props) {
-        super(props)
-    }
+class App extends Component {
 
     componentDidMount() { // check to see if already signed in.
         const auth = firebase.auth();
@@ -69,7 +63,7 @@ export default observer(class App extends Component {
             </div>
         );
     }
-})
+}
 
 
-
+export default observer(App)

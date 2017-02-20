@@ -7,9 +7,9 @@ import {observer, inject} from "mobx-react";
  * @returns {XML}
  * @constructor
  */
-export default inject("stuffStore")(observer(function ListStuffComponent(props) {
+function ListStuffComponent({stuffStore}) {
 
-    const {stuffList, isLoading} = props.stuffStore;
+    const {stuffList, isLoading} = stuffStore;
     const styles = {'display': 'flex', flexDirection: 'column', padding: 10}
     const listItems = stuffList.map((_stuff) =>
             <ListItem key={_stuff.id} stuff={_stuff}/>
@@ -22,7 +22,7 @@ export default inject("stuffStore")(observer(function ListStuffComponent(props) 
             {listItems}
         </div>
     );
-}));
+};
 
 /**
  *
@@ -30,8 +30,7 @@ export default inject("stuffStore")(observer(function ListStuffComponent(props) 
  * @returns {XML}
  * @constructor
  */
-function ListItem(props) {
-    const {stuff} = props;
+function ListItem({stuff}) {
     const styles = {
         container: {'display': 'flex', flexDirection: 'row', padding: 10},
         name: {flex: 1, padding: 2},
@@ -48,3 +47,4 @@ function ListItem(props) {
 }
 
 
+export default inject("stuffStore")(observer(ListStuffComponent))

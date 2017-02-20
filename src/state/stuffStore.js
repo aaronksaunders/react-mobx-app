@@ -1,4 +1,4 @@
-import {extendObservable, computed, observable} from 'mobx';
+import {extendObservable} from 'mobx';
 
 import * as firebase from 'firebase';
 

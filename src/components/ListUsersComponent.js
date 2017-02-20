@@ -7,8 +7,8 @@ import {observer, inject} from "mobx-react";
  * @returns {XML}
  * @constructor
  */
-export default inject("usersStore")(observer(function ListUsersComponent(props) {
-    const {userList, isLoading} = props.usersStore;
+function ListUsersComponent({usersStore}) {
+    const {userList, isLoading} = usersStore;
     const styles = {'display': 'flex', flexDirection: 'column'}
 
     const listItems = isLoading ? <p>LOADING...</p>
@@ -21,7 +21,7 @@ export default inject("usersStore")(observer(function ListUsersComponent(props) 
             {listItems}
         </div>
     );
-}))
+}
 
 /**
  *
@@ -29,8 +29,8 @@ export default inject("usersStore")(observer(function ListUsersComponent(props) 
  * @returns {XML}
  * @constructor
  */
-function ListItem(props) {
-    const {user} = props;
+function ListItem({user}) {
+
     const styles = {
         container: {'display': 'flex', flexDirection: 'row', padding: 3},
         image: {flex: 0, padding: 5},
@@ -40,9 +40,10 @@ function ListItem(props) {
 
     return (
         <div style={styles.container}>
-            <img style={styles.image} src={user.picture.thumbnail}></img>
+            <img style={styles.image} src={user.picture.thumbnail} role="presentation"  ></img>
             <p style={styles.email}>{user.email}</p>
         </div>
     );
 }
 
+export default inject("usersStore")(observer(ListUsersComponent))

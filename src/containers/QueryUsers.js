@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react'
+import React from 'react'
 import ListUsersComponent from '../components/ListUsersComponent'
 import {observer, inject} from "mobx-react";
 import { browserHistory } from 'react-router'
@@ -6,15 +6,17 @@ import { browserHistory } from 'react-router'
 /**
  *
  */
-export default  inject("usersStore")(observer(function QueryUsers(props) {
+function QueryUsers({usersStore}) {
 
     return (
         <div>
             <p>
-                <button onClick={ () => props.usersStore.loadUsers() }>Load Users</button>
+                <button onClick={ () => usersStore.loadUsers() }>Load Users</button>
                 <button onClick={ () => browserHistory.push("/") }>Go Home</button>
             </p>
             <ListUsersComponent />
         </div>
     )
-}));
+}
+
+export default inject("usersStore")(observer(QueryUsers))
