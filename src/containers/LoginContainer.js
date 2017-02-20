@@ -5,14 +5,14 @@ import {browserHistory} from 'react-router'
 /**
  *
  */
-function LoginContainer({stuffStore}) {
+function LoginContainer({firebaseStore}) {
 
     return (
         <div>
             <div>
-                <StuffLoginForm submitAction={ (_data) => stuffStore.doLogin(_data) }/>
+                <FirebaseLoginForm submitAction={ (_data) => firebaseStore.doLogin(_data) }/>
             </div>
-            {stuffStore.error ? (<div style={{color: 'red', fontSize:18, padding:10}}>{stuffStore.error.message}</div>) : "" }
+            {firebaseStore.error ? (<div style={{color: 'red', fontSize:18, padding:10}}>{firebaseStore.error.message}</div>) : "" }
         </div>
     )
 }
@@ -21,7 +21,7 @@ function LoginContainer({stuffStore}) {
 /**
  *
  */
-class StuffLoginForm extends React.Component {
+class FirebaseLoginForm extends React.Component {
 
     buttonStyle = {
         marginTop: 20,
@@ -94,4 +94,4 @@ class StuffLoginForm extends React.Component {
     }
 }
 
-export default inject("stuffStore")(observer(LoginContainer))
+export default inject("firebaseStore")(observer(LoginContainer))

@@ -7,9 +7,9 @@ import {observer, inject} from "mobx-react";
  * @returns {XML}
  * @constructor
  */
-function ListStuffComponent({stuffStore}) {
+function ListStuffComponent({firebaseStore}) {
 
-    const {stuffList, isLoading} = stuffStore;
+    const {stuffList, isLoading} = firebaseStore;
     const styles = {'display': 'flex', flexDirection: 'column', padding: 10}
     const listItems = stuffList.map((_stuff) =>
             <ListItem key={_stuff.id} stuff={_stuff}/>
@@ -47,4 +47,4 @@ function ListItem({stuff}) {
 }
 
 
-export default inject("stuffStore")(observer(ListStuffComponent))
+export default inject("firebaseStore")(observer(ListStuffComponent))

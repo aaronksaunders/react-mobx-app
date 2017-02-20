@@ -1,6 +1,6 @@
-import StuffStore from './stuffStore'
+import FirebaseStore from './firebaseStore'
 import UsersStore from './usersStore'
 
-const stuffStore = new StuffStore();
+const firebaseStore = new FirebaseStore();
 const usersStore = new UsersStore();
-export const stores = { stuffStore, usersStore };
+export const stores = { firebaseStore, usersStore };

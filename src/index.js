@@ -21,9 +21,9 @@ import {Provider} from 'mobx-react'
  */
 function checkAuth(nextState, replaceState) {
 
-    let {stuffStore} = stores;
+    let {firebaseStore} = stores;
     if (nextState.location.pathname === '/') return;
-    if (stuffStore.user === null) {
+    if (firebaseStore.user === null) {
         replaceState('/');
     }
 

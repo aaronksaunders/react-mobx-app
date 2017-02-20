@@ -17,11 +17,11 @@ class App extends Component {
     }
 
     componentDidMount() { // check to see if already signed in.
-        this.props.stuffStore.doCheckAuth()
+        this.props.firebaseStore.doCheckAuth()
     }
 
     logout() {
-        this.props.stuffStore.doLogout()
+        this.props.firebaseStore.doLogout()
     }
 
     renderActionButtons() {
@@ -68,11 +68,11 @@ class App extends Component {
                         <li>multiple stores utilized in example, one for Users & one for Firebase Objects</li>
                     </ul>
                 </div>
-                { this.props.stuffStore.user === null ? (<LoginContainer props={this.props}/>) : this.renderActionButtons() }
+                { this.props.firebaseStore.user === null ? (<LoginContainer props={this.props}/>) : this.renderActionButtons() }
             </div>
         );
     }
 }
 
 
-export default inject("stuffStore")(observer(App))
+export default inject("firebaseStore")(observer(App))

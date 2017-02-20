@@ -3,7 +3,7 @@ import ListStuffComponent from '../components/ListStuffComponent'
 import {browserHistory} from 'react-router'
 import {observer, inject} from "mobx-react";
 
-function QueryStuff({stuffStore}) {
+function QueryStuff({firebaseStore}) {
 
     const buttonStyle = {
         marginTop: 20,
@@ -18,13 +18,13 @@ function QueryStuff({stuffStore}) {
     return (
         <div style={{padding: 20}}>
             <div style={{padding: 10}}>
-                <button style={{...buttonStyle, marginRight: 10}} onClick={ () => stuffStore.loadStuff() }>Load
+                <button style={{...buttonStyle, marginRight: 10}} onClick={ () => firebaseStore.loadStuff() }>Load
                     Stuff
                 </button>
                 <button style={buttonStyle} onClick={ () => browserHistory.push("/") }>Go Home</button>
             </div>
             <div style={{padding: 10}}>
-                <StuffInputForm submitAction={ (_data) => stuffStore.addStuff(_data) }/>
+                <StuffInputForm submitAction={ (_data) => firebaseStore.addStuff(_data) }/>
             </div>
             <ListStuffComponent />
         </div>
@@ -108,4 +108,4 @@ class StuffInputForm extends React.Component {
     }
 }
 
-export default inject("stuffStore")(observer(QueryStuff))
+export default inject("firebaseStore")(observer(QueryStuff))

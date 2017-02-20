@@ -5,7 +5,7 @@ import * as firebase from 'firebase';
 /**
  * this is the store that is used to access and update the firebase data
  */
-export default class StuffStore {
+export default class FirebaseStore {
 
     constructor() {
         extendObservable(this, {
@@ -50,9 +50,11 @@ export default class StuffStore {
         auth.onAuthStateChanged((user) => {
             console.log("state changed")
             if (user) {
-                this.setState({auth: user});
+                this.error = null;
+                this.user = user;
             } else {
-                this.setState({auth: false});
+                this.error = null;
+                this.user = null;
             }
         });
     }
