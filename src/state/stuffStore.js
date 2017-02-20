@@ -14,8 +14,19 @@ export default class StuffStore {
             newStuff : null,
             error: null,
             user : null,
+        });
 
-        })
+
+        // Initialize firebase...
+        const firebaseConfig = {
+            apiKey: "AIzaSyC7XBiaPpX3tbmsO7oofWsNYK7ZP3fkkzU",
+            authDomain: "new-web-project-45936.firebaseapp.com",
+            databaseURL: "https://new-web-project-45936.firebaseio.com",
+            storageBucket: "new-web-project-45936.appspot.com",
+            messagingSenderId: "882846816313"
+        };
+
+        firebase.initializeApp(firebaseConfig);
     }
 
     doLogin({email,password}) {
@@ -35,7 +46,15 @@ export default class StuffStore {
     }
 
     doCheckAuth() {
-
+        const auth = firebase.auth();
+        auth.onAuthStateChanged((user) => {
+            console.log("state changed")
+            if (user) {
+                this.setState({auth: user});
+            } else {
+                this.setState({auth: false});
+            }
+        });
     }
 
     doLogout() {

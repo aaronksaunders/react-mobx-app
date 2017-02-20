@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router'
-import {observer,inject} from "mobx-react";
+import {observer, inject} from "mobx-react";
 import  LoginContainer  from "./containers/LoginContainer"
-import * as firebase from 'firebase';
 
 import logo from './logo.svg';
 import './App.css';
@@ -14,22 +13,11 @@ import './App.css';
 class App extends Component {
 
     constructor(props) {
-        super(props)
-        this.state = {
-            auth : false
-        }
+        super(props);
     }
 
     componentDidMount() { // check to see if already signed in.
-        const auth = firebase.auth();
-        auth.onAuthStateChanged((user) => {
-            console.log("state changed")
-            if (user) {
-                this.setState({auth: user});
-            } else {
-                this.setState({auth: false});
-            }
-        });
+        this.props.stuffStore.doCheckAuth()
     }
 
     logout() {
@@ -40,8 +28,8 @@ class App extends Component {
         return (
             <div>
                 <div>
-                    <button className="App-button" onClick={ () => browserHistory.push('/query-users') }>Load Users -
-                        RandomUser.me Example
+                    <button className="App-button" onClick={ () => browserHistory.push('/query-users') }>
+                        Load Users - RandomUser.me Example
                     </button>
                 </div>
                 <div>
@@ -80,7 +68,7 @@ class App extends Component {
                         <li>multiple stores utilized in example, one for Users & one for Firebase Objects</li>
                     </ul>
                 </div>
-                { this.state.auth === false ? (<LoginContainer props={this.props} />) : this.renderActionButtons() }
+                { this.props.stuffStore.user === null ? (<LoginContainer props={this.props}/>) : this.renderActionButtons() }
             </div>
         );
     }

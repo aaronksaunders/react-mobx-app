@@ -9,22 +9,16 @@ import QueryStuff from './containers/QueryStuff'
 
 import {stores} from './state/stores'
 
-import * as firebase from 'firebase';
-
 import {Provider} from 'mobx-react'
 
-// Initialize firebase...
-const firebaseConfig = {
-    apiKey: "AIzaSyC7XBiaPpX3tbmsO7oofWsNYK7ZP3fkkzU",
-    authDomain: "new-web-project-45936.firebaseapp.com",
-    databaseURL: "https://new-web-project-45936.firebaseio.com",
-    storageBucket: "new-web-project-45936.appspot.com",
-    messagingSenderId: "882846816313"
-};
 
-firebase.initializeApp(firebaseConfig);
-
-
+/**
+ * used as a guard to prevent users from accessing
+ * secure routes
+ *
+ * @param nextState
+ * @param replaceState
+ */
 function checkAuth(nextState, replaceState) {
 
     let {stuffStore} = stores;
